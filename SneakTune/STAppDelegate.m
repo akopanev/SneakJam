@@ -16,10 +16,19 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
+	
+	// remove separator
+	[[UINavigationBar appearance] setShadowImage:[[[UIImage alloc] init] autorelease]];
+	[[UINavigationBar appearance] setBackgroundImage:[[[UIImage alloc] init] autorelease] forBarMetrics:UIBarMetricsDefault];
+	// change default font and color
+	NSDictionary *buttonItemTextTitleOptions = [NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor], NSForegroundColorAttributeName, [UIFont systemFontOfSize:17.0f], NSFontAttributeName, nil];
+	[[UIBarButtonItem appearance] setTitleTextAttributes:buttonItemTextTitleOptions forState:UIControlStateNormal];
+	NSDictionary *buttonDisabledItemTextTitleOptions = [NSDictionary dictionaryWithObjectsAndKeys:[UIColor grayColor], NSForegroundColorAttributeName, [UIFont systemFontOfSize:17.0f], NSFontAttributeName, nil];
+	[[UIBarButtonItem appearance] setTitleTextAttributes:buttonDisabledItemTextTitleOptions forState:UIControlStateDisabled];
+		
 	UINavigationController *navigationController = [[[UINavigationController alloc] initWithRootViewController:[[[STSearchViewController alloc] init] autorelease]] autorelease];
-	navigationController.interactivePopGestureRecognizer.enabled = YES;
-//	UINavigationController *navigationController = [[[UINavigationController alloc] initWithRootViewController:[[[STSneakViewController alloc] init] autorelease]] autorelease];
-	navigationController.navigationBarHidden = YES;
+	navigationController.navigationBar.tintColor = [UIColor grayColor];
+	navigationController.navigationBar.translucent = NO;
 	self.window.rootViewController = navigationController;
     return YES;
 }

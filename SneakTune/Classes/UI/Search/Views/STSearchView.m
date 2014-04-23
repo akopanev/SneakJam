@@ -34,6 +34,7 @@ const CGFloat STSearchViewSearchFieldHeight		= 40.0;
 		_tableView.backgroundColor = [UIColor whiteColor];
 		((TPKeyboardAvoidingTableView *)_tableView).avoidingDelegate = self;
 		_tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+
 		[self addSubview:_tableView];
     }
     return self;
@@ -47,7 +48,7 @@ const CGFloat STSearchViewSearchFieldHeight		= 40.0;
 	const CGFloat horizontalMargin = 4.0;
 	const CGFloat searchFieldHorizontalMArgin = 4.0f + 4.0f;
 	
-	CGFloat statusBarOffset = 20.0f; //[[UIApplication sharedApplication] statusBarFrame].size.height;
+	CGFloat statusBarOffset = 0.0; // 20.0f; //[[UIApplication sharedApplication] statusBarFrame].size.height;
 	_searchField.frame = CGRectMake(searchFieldHorizontalMArgin, statusBarOffset, self.bounds.size.width - searchFieldHorizontalMArgin * 2.0, STSearchViewSearchFieldHeight);
 	_tableView.frame = CGRectMake(horizontalMargin, CGRectGetMaxY(_searchField.frame), self.bounds.size.width - horizontalMargin * 2.0, self.bounds.size.height - CGRectGetMaxY(_searchField.frame));
 }

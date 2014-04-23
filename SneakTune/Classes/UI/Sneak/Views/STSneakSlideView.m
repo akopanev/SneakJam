@@ -34,6 +34,7 @@ CGFloat STSneakSlideIndicatorViewHeight		= 15.0;
 		
 		_indicatorView = [[STSneakIndicatorView alloc] initWithFrame:CGRectZero];
 		[_indicatorView addTarget:self action:@selector(draggingAction:event:) forControlEvents:UIControlEventTouchDragEnter | UIControlEventTouchDragInside | UIControlEventTouchDragOutside];
+		[_indicatorView addTarget:self action:@selector(draggingFinishedAction:) forControlEvents:UIControlEventTouchUpInside | UIControlEventTouchUpOutside];
 		[self addSubview:_indicatorView];
 		[_indicatorView setNeedsDisplay];
     }
@@ -59,6 +60,10 @@ CGFloat STSneakSlideIndicatorViewHeight		= 15.0;
 
 #pragma mark -
 
+- (void)draggingFinishedAction:(UIControl *)sender {
+	[self sendActionsForControlEvents:UIControlEventValueChanged];
+}
+
 - (void)draggingAction:(UIControl *)sender event:(UIEvent *)event {
 	UITouch *touch = [[event allTouches] anyObject];
 	CGPoint point = [touch locationInView:self];
@@ -73,7 +78,10 @@ CGFloat STSneakSlideIndicatorViewHeight		= 15.0;
 		frame.origin.x = [self sliderWidth] - frame.size.width;
 	}
 	_indicatorView.frame = frame;
-	[self sendActionsForControlEvents:UIControlEventValueChanged];
+}
+
+- (CGFloat)currentOffset {
+	return _indicatorView.frame.origin.x / [self sliderWidth];
 }
 
 #pragma mark -

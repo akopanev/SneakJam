@@ -50,7 +50,7 @@
 - (void)layoutSubviews {
 	[super layoutSubviews];
 	
-	CGFloat statusBarOffset = 20.0;
+	CGFloat statusBarOffset = 0.0; // 20.0;
 	
 	const CGFloat verticalMargin = 15.0;
 	const CGFloat horizontalMargin = 15.0;
@@ -59,11 +59,12 @@
 	_coverImageView.frame = CGRectMake(horizontalMargin, verticalMargin + statusBarOffset, coverSize, coverSize);
 	_grayCoverView.frame = _coverImageView.frame;
 	
-	_trackTitleLabel.frame = CGRectMake(horizontalMargin, CGRectGetMaxY(_coverImageView.frame) + verticalMargin, self.bounds.size.width - horizontalMargin * 2.0, _trackTitleLabel.font.lineHeight);
+	_trackTitleLabel.frame = CGRectMake(horizontalMargin, CGRectGetMaxY(_coverImageView.frame) + verticalMargin + 10.0, self.bounds.size.width - horizontalMargin * 2.0, _trackTitleLabel.font.lineHeight);
 	_artistNameLabel.frame = CGRectMake(horizontalMargin, CGRectGetMaxY(_trackTitleLabel.frame), self.bounds.size.width - horizontalMargin * 2.0, _artistNameLabel.font.lineHeight);
 	
+	CGFloat remainingHeight = self.bounds.size.height - CGRectGetMaxY(_artistNameLabel.frame);
 	const CGFloat slideWidth = 250.0;
-//	_slideView.frame = CGRectMake(floorf(self.bounds.size.width * 0.5f - slideWidth * 0.5f), 200.0, slideWidth, STSneakSlideViewHeight);
+	_slideView.frame = CGRectMake(floorf(self.bounds.size.width * 0.5f - slideWidth * 0.5f), floorf(CGRectGetMaxY(_artistNameLabel.frame) + remainingHeight * 0.5f - STSneakSlideViewHeight * 0.5), slideWidth, STSneakSlideViewHeight);
 }
 
 #pragma mark -

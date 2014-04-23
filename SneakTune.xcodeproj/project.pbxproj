@@ -68,6 +68,8 @@
 		5200ED691908203A003C669C /* STSneakSlideView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5200ED681908203A003C669C /* STSneakSlideView.m */; };
 		5200ED6C1908205B003C669C /* STSneakIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5200ED6B1908205B003C669C /* STSneakIndicatorView.m */; };
 		5200ED6E19082736003C669C /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5200ED6D19082736003C669C /* QuartzCore.framework */; };
+		5200ED7019083DEC003C669C /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5200ED6F19083DEC003C669C /* AVFoundation.framework */; };
+		5200ED74190858AA003C669C /* sneakjam_logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5200ED73190858AA003C669C /* sneakjam_logo@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -198,6 +200,8 @@
 		5200ED6A1908205B003C669C /* STSneakIndicatorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STSneakIndicatorView.h; sourceTree = "<group>"; };
 		5200ED6B1908205B003C669C /* STSneakIndicatorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STSneakIndicatorView.m; sourceTree = "<group>"; };
 		5200ED6D19082736003C669C /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		5200ED6F19083DEC003C669C /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		5200ED73190858AA003C669C /* sneakjam_logo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sneakjam_logo@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -205,6 +209,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5200ED7019083DEC003C669C /* AVFoundation.framework in Frameworks */,
 				5200ED6E19082736003C669C /* QuartzCore.framework in Frameworks */,
 				5200EC421907E53C003C669C /* CoreGraphics.framework in Frameworks */,
 				5200EC441907E53C003C669C /* UIKit.framework in Frameworks */,
@@ -250,6 +255,7 @@
 		5200EC3E1907E53C003C669C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				5200ED6F19083DEC003C669C /* AVFoundation.framework */,
 				5200ED6D19082736003C669C /* QuartzCore.framework */,
 				5200EC3F1907E53C003C669C /* Foundation.framework */,
 				5200EC411907E53C003C669C /* CoreGraphics.framework */,
@@ -529,6 +535,7 @@
 		5200ED5619080E6E003C669C /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				5200ED72190858AA003C669C /* Images */,
 				5200ED5719080E6E003C669C /* Fonts */,
 			);
 			name = Resources;
@@ -565,6 +572,14 @@
 				5200ED6B1908205B003C669C /* STSneakIndicatorView.m */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		5200ED72190858AA003C669C /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				5200ED73190858AA003C669C /* sneakjam_logo@2x.png */,
+			);
+			path = Images;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -644,6 +659,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5200ED5A19080E6E003C669C /* OpenSans-Light.ttf in Resources */,
+				5200ED74190858AA003C669C /* sneakjam_logo@2x.png in Resources */,
 				5200EC4A1907E53C003C669C /* InfoPlist.strings in Resources */,
 				5200ED5B19080E6E003C669C /* OpenSans-Regular.ttf in Resources */,
 				5200EC521907E53C003C669C /* Images.xcassets in Resources */,
@@ -827,7 +843,7 @@
 		5200EC691907E53D003C669C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-2";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_OBJC_ARC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -841,7 +857,7 @@
 		5200EC6A1907E53D003C669C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-2";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_OBJC_ARC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;

@@ -72,6 +72,10 @@ NSString *const STSearchViewControllerAlbumIdNotification			= @"STSearchViewCont
     [super viewDidLoad];
 	self.view.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
 	
+	UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"sneakjam_logo.png"]];
+	self.navigationItem.titleView = imageView;
+	self.navigationItem.backBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil] autorelease];
+	
 	// create views
 	_searchView = [[STSearchView alloc] initWithFrame:self.view.bounds];
 	_searchView.searchField.delegate = self;
