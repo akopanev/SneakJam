@@ -44,7 +44,7 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         _af_sharedImageRequestOperationQueue = [[NSOperationQueue alloc] init];
-        _af_sharedImageRequestOperationQueue.maxConcurrentOperationCount = NSOperationQueueDefaultMaxConcurrentOperationCount;
+        _af_sharedImageRequestOperationQueue.maxConcurrentOperationCount = 1; //NSOperationQueueDefaultMaxConcurrentOperationCount;
     });
 
     return _af_sharedImageRequestOperationQueue;

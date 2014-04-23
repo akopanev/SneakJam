@@ -49,8 +49,8 @@ const CGFloat STTrackContentViewHeight			= 50.0;
 	
 	CGFloat offset = 4.0;
 	CGFloat offsetY = -1.0;
-	
 	_coverImageView.frame = CGRectMake(offset, 0.0, STTrackContentViewHeight, STTrackContentViewHeight);
+	_grayCoverView.frame = _coverImageView.frame;
 	
 	CGFloat labelsX = CGRectGetMaxX(_coverImageView.frame) + offset;
 	CGFloat labelsWidth = self.bounds.size.width - CGRectGetMaxX(_coverImageView.frame) - offset * 2.0;
@@ -71,7 +71,8 @@ const CGFloat STTrackContentViewHeight			= 50.0;
 }
 
 - (void)setAlbumCoverImageURLString:(NSString *)albumCoverImageURLString {
-	if (albumCoverImageURLString != _albumCoverImageURLString) {
+	///if (albumCoverImageURLString != _albumCoverImageURLString) {
+	if (NO == [albumCoverImageURLString isEqualToString:_albumCoverImageURLString]) {
 		[_albumCoverImageURLString release];
 		_albumCoverImageURLString = [albumCoverImageURLString retain];
 		
@@ -82,7 +83,7 @@ const CGFloat STTrackContentViewHeight			= 50.0;
 											success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
 												_coverImageView.alpha = 0.0;
 												_coverImageView.image = image;
-												[UIView animateWithDuration:0.15 animations:^{
+												[UIView animateWithDuration:0.25 animations:^{
 													_coverImageView.alpha = 1.0;
 												}];
 											}
