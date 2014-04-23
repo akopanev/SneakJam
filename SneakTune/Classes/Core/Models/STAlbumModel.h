@@ -13,5 +13,6 @@
 @property (nonatomic, retain) NSString		*albumId;
 @property (nonatomic, retain) NSString		*name;
 @property (nonatomic, retain) NSString		*coverMediumImageURL;
+@property (nonatomic, retain) NSString		*coverBigImageURL;
 
 @end

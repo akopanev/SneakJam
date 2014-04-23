@@ -69,6 +69,7 @@ NSString *const STSearchViewControllerAlbumIdNotification			= @"STSearchViewCont
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+	self.view.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
 	
 	// create views
 	_searchView = [[STSearchView alloc] initWithFrame:self.view.bounds];

@@ -8,6 +8,7 @@
 
 #import "STAppDelegate.h"
 #import "STSearchViewController.h"
+#import "STSneakViewController.h"
 
 @implementation STAppDelegate
 
@@ -16,6 +17,7 @@
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
 	UINavigationController *navigationController = [[[UINavigationController alloc] initWithRootViewController:[[[STSearchViewController alloc] init] autorelease]] autorelease];
+//	UINavigationController *navigationController = [[[UINavigationController alloc] initWithRootViewController:[[[STSneakViewController alloc] init] autorelease]] autorelease];
 	navigationController.navigationBarHidden = YES;
 	self.window.rootViewController = navigationController;
     return YES;

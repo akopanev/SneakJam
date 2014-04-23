@@ -15,6 +15,7 @@ const CGFloat STTrackContentViewHeight			= 50.0;
 	UILabel		*_trackTitleLabel;
 	UILabel		*_artistNameLabel;
 	UIImageView	*_coverImageView;
+	UIView		*_grayCoverView;
 }
 @end
 
@@ -23,6 +24,10 @@ const CGFloat STTrackContentViewHeight			= 50.0;
 - (id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
+		_grayCoverView = [[UIView alloc] initWithFrame:CGRectZero];
+		_grayCoverView.backgroundColor = [UIColor colorWithWhite:227.0 / 255.0 alpha:1.0];
+		[self addSubview:_grayCoverView];
+		
 		_coverImageView = [[UIImageView alloc] initWithFrame:CGRectZero];
 		[self addSubview:_coverImageView];
 		
@@ -62,7 +67,7 @@ const CGFloat STTrackContentViewHeight			= 50.0;
 		
 		_trackTitleLabel.text = trackModel.name ? trackModel.name : @"";
 		_artistNameLabel.text = trackModel.artistName ? trackModel.artistName : @"";
-	}	
+	}
 }
 
 - (void)setAlbumCoverImageURLString:(NSString *)albumCoverImageURLString {
@@ -71,7 +76,18 @@ const CGFloat STTrackContentViewHeight			= 50.0;
 		_albumCoverImageURLString = [albumCoverImageURLString retain];
 		
 		if (nil != albumCoverImageURLString) {
-			[_coverImageView setImageWithURL:[NSURL URLWithString:albumCoverImageURLString]];
+			
+			[_coverImageView setImageWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:albumCoverImageURLString]]
+								   placeholderImage:nil
+											success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
+												_coverImageView.alpha = 0.0;
+												_coverImageView.image = image;
+												[UIView animateWithDuration:0.15 animations:^{
+													_coverImageView.alpha = 1.0;
+												}];
+											}
+											failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
+											}];
 		} else {
 			_coverImageView.image = nil;
 		}
