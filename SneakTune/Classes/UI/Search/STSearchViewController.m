@@ -80,6 +80,13 @@ NSString *const STSearchViewControllerAlbumIdNotification			= @"STSearchViewCont
 	[_searchView.tableView registerClass:[STTrackViewCell class] forCellReuseIdentifier:@"STTrackViewCell"];
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+	[super viewDidAppear:animated];
+	if (self.tracksList.count == 0) {
+		[self.searchView.searchField becomeFirstResponder];
+	}
+}
+
 #pragma mark - ui
 
 - (void)reloadDataWithError:(NSError *)error {

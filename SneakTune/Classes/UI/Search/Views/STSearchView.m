@@ -25,7 +25,7 @@ const CGFloat STSearchViewSearchFieldHeight		= 40.0;
 		
 		_searchField = [[UITextField alloc] initWithFrame:CGRectMake(0.0f, 0.0f, self.bounds.size.width, STSearchViewSearchFieldHeight)];
 		_searchField.font = [UIFont fontWithName:@"OpenSans-Light" size:14.0];
-		_searchField.placeholder = @"search";
+		_searchField.placeholder = @"Search";
 		_searchField.backgroundColor = [UIColor whiteColor];
 		_searchField.returnKeyType = UIReturnKeySearch;
 		[self addSubview:_searchField];
