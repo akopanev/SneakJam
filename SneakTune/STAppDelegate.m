@@ -17,6 +17,7 @@
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
 	UINavigationController *navigationController = [[[UINavigationController alloc] initWithRootViewController:[[[STSearchViewController alloc] init] autorelease]] autorelease];
+	navigationController.interactivePopGestureRecognizer.enabled = YES;
 //	UINavigationController *navigationController = [[[UINavigationController alloc] initWithRootViewController:[[[STSneakViewController alloc] init] autorelease]] autorelease];
 	navigationController.navigationBarHidden = YES;
 	self.window.rootViewController = navigationController;

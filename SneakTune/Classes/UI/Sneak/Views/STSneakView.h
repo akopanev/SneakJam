@@ -11,6 +11,9 @@
 
 @interface STSneakView : UIView
 
+@property (nonatomic, readonly) UIImageView				*coverImageView;
+@property (nonatomic, readonly) UILabel					*trackTitleLabel;
+@property (nonatomic, readonly) UILabel					*artistNameLabel;
 @property (nonatomic, readonly) STSneakSlideView		*slideView;
 
 @end

@@ -14,9 +14,6 @@
 
 - (id)initWithJSONData:(NSDictionary *)jsonData {
 	if (self = [super initWithJSONData:jsonData]) {
-		
-		NSLog(@"%s json data == %@", __PRETTY_FUNCTION__, jsonData);
-		
 		self.albumId = [jsonData objectForKey:@"id"];
 		self.name = [jsonData objectForKey:@"name"];
 		NSDictionary *images = [jsonData objectForKey:@"images"];

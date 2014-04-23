@@ -11,6 +11,7 @@
 #import "STTrackViewCell.h"
 
 #import "STAPIEngine.h"
+#import "STSneakViewController.h"
 
 // const
 NSString *const STSearchViewControllerSearchAPINotification			= @"STSearchViewControllerSearchAPINotification";
@@ -31,7 +32,6 @@ NSString *const STSearchViewControllerAlbumIdNotification			= @"STSearchViewCont
 #pragma mark - notifications
 
 - (void)didSearchTrackNotification:(NSNotification *)notification {
-	NSLog(@"%s ui == %@", __PRETTY_FUNCTION__, notification);
 	if (nil == NTF_ERROR(notification)) {
 		self.tracksList = NTF_RESULT(notification);
 		[self reloadDataWithError:nil];
@@ -61,6 +61,7 @@ NSString *const STSearchViewControllerAlbumIdNotification			= @"STSearchViewCont
 
 - (id)init {
 	if (self = [super init]) {
+		_albumsDictionary = [[NSMutableDictionary alloc] init];
 		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didSearchTrackNotification:) name:STSearchViewControllerSearchAPINotification object:nil];
 		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(albumNotification:) name:STSearchViewControllerAlbumIdNotification object:nil];
 	}
@@ -79,6 +80,8 @@ NSString *const STSearchViewControllerAlbumIdNotification			= @"STSearchViewCont
 	[self.view addSubview:_searchView];
 	
 	[_searchView.tableView registerClass:[STTrackViewCell class] forCellReuseIdentifier:@"STTrackViewCell"];
+	
+	
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -86,6 +89,16 @@ NSString *const STSearchViewControllerAlbumIdNotification			= @"STSearchViewCont
 	if (self.tracksList.count == 0) {
 		[self.searchView.searchField becomeFirstResponder];
 	}
+	
+	if (self.selectedIndexPath != nil) {
+		[self.searchView.tableView deselectRowAtIndexPath:self.selectedIndexPath animated:YES];
+		self.selectedIndexPath = nil;
+	}
+	
+#ifdef DEBUG
+	self.searchView.searchField.text = @"Song";
+	[self requestSearchTrack:self.searchView.searchField.text];
+#endif
 }
 
 #pragma mark - ui
@@ -135,6 +148,16 @@ NSString *const STSearchViewControllerAlbumIdNotification			= @"STSearchViewCont
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	self.selectedIndexPath = indexPath;
 	
+	STTrackModel *trackModel = [self.tracksList objectAtIndex:indexPath.row];
+	STAlbumModel *albumModel = [_albumsDictionary objectForKey:trackModel.albumId];
+	
+	NSLog(@"id == %@", trackModel.albumId);
+	NSLog(@"albums == %@", _albumsDictionary);
+	
+	NSLog(@"album Model == %@", albumModel);
+	
+	STSneakViewController *sneakViewController = [[[STSneakViewController alloc] initWithTrackModel:trackModel albumModel:albumModel] autorelease];
+	[self.navigationController pushViewController:sneakViewController animated:YES];
 }
 
 #pragma mark - UITextFieldDelegate

@@ -8,9 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "STTrackModel.h"
+#import "STAlbumModel.h"
 
 @interface STSneakViewController : UIViewController
 
-- (id)initWithTrackModel:(STTrackModel *)trackModel;
+- (id)initWithTrackModel:(STTrackModel *)trackModel albumModel:(STAlbumModel *)albumModel;
 
 @end
