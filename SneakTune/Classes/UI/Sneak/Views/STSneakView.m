@@ -13,6 +13,8 @@
 @interface STSneakView () {
 	UIView		*_grayCoverView;
 	UILabel		*_loadingLabel;
+	UILabel		*_zeroLabel;
+	UILabel		*_thirtyLabel;
 }
 
 @end
@@ -52,6 +54,20 @@
 		_loadingLabel.font = [UIFont fontWithName:@"OpenSans-Light" size:16.0];
 		[self addSubview:_loadingLabel];
 		
+		_zeroLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+		_zeroLabel.alpha = 0.0;
+		_zeroLabel.textAlignment = NSTextAlignmentCenter;
+		_zeroLabel.text = @"0";
+		_zeroLabel.font = [UIFont fontWithName:@"OpenSans-Light" size:18.0];
+		[self addSubview:_zeroLabel];
+
+		_thirtyLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+		_thirtyLabel.alpha = 0.0;
+		_thirtyLabel.textAlignment = NSTextAlignmentCenter;
+		_thirtyLabel.text = @"30";
+		_thirtyLabel.font = [UIFont fontWithName:@"OpenSans-Light" size:18.0];
+		[self addSubview:_thirtyLabel];
+		
 		_playButton = [[UIButton buttonWithType:UIButtonTypeCustom] retain];
 		_playButton.alpha = 0.0;
 		[_playButton setImage:[UIImage imageNamed:@"icon_play.png"] forState:UIControlStateNormal];
@@ -80,11 +96,15 @@
 		
 		[UIView animateWithDuration:0.15 animations:^{
 			_slideView.alpha = 0.0;
+			_zeroLabel.alpha = 0.0;
+			_thirtyLabel.alpha = 0.0;
 			_loadingLabel.alpha = 1.0;
 		}];
 	} else {
 		[UIView animateWithDuration:0.15 animations:^{
 			_slideView.alpha = 1.0;
+			_zeroLabel.alpha = 1.0;
+			_thirtyLabel.alpha = 1.0;
 			_loadingLabel.alpha = 0.0;
 		}];
 	}
@@ -125,6 +145,17 @@
 	const CGFloat slideWidth = 250.0;
 	_slideView.frame = CGRectMake(floorf(self.bounds.size.width * 0.5f - slideWidth * 0.5f), floorf(CGRectGetMaxY(_artistNameLabel.frame) + remainingHeight * 0.5f - STSneakSlideViewHeight * 0.5), slideWidth, STSneakSlideViewHeight);
 	_loadingLabel.frame = CGRectMake( horizontalMargin, CGRectGetMaxY(_artistNameLabel.frame), self.bounds.size.width - horizontalMargin * 2.0, remainingHeight);
+	
+	NSDictionary *attributes = @{NSFontAttributeName: _zeroLabel.font};
+	// NSString class method: boundingRectWithSize:options:attributes:context is
+	// available only on ios7.0 sdk.
+	CGRect rect = [_zeroLabel.text boundingRectWithSize:CGSizeMake(MAXFLOAT, MAXFLOAT)
+                                              options:NSStringDrawingUsesLineFragmentOrigin
+                                           attributes:attributes
+                                              context:nil];
+	CGFloat labelsY = floorf(_slideView.center.y - rect.size.height * 0.5);
+	_zeroLabel.frame = CGRectMake(CGRectGetMinX(_slideView.frame) - 7.0 - rect.size.width, labelsY, rect.size.width, rect.size.height);
+	_thirtyLabel.frame = CGRectMake(CGRectGetMaxX(_slideView.frame) + 3.0, labelsY, 30.0, rect.size.height);
 }
 
 #pragma mark -
@@ -137,6 +168,8 @@
 	[_artistNameLabel release];
 	[_loadingLabel release];
 	[_playButton release];
+	[_zeroLabel release];
+	[_thirtyLabel release];
 	[super dealloc];
 }
 
