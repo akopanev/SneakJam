@@ -82,6 +82,7 @@
 		5200EDA51908F3C8003C669C /* UIImage+Tint.m in Sources */ = {isa = PBXBuildFile; fileRef = 5200ED991908F3C8003C669C /* UIImage+Tint.m */; };
 		520B0DAE1908F96B00775E6D /* icon_pause@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 520B0DAC1908F96B00775E6D /* icon_pause@2x.png */; };
 		520B0DAF1908F96B00775E6D /* icon_play@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 520B0DAD1908F96B00775E6D /* icon_play@2x.png */; };
+		520B0DB11908FAB300775E6D /* icon_find@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 520B0DB01908FAB300775E6D /* icon_find@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -239,6 +240,7 @@
 		5200ED991908F3C8003C669C /* UIImage+Tint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Tint.m"; sourceTree = "<group>"; };
 		520B0DAC1908F96B00775E6D /* icon_pause@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_pause@2x.png"; sourceTree = "<group>"; };
 		520B0DAD1908F96B00775E6D /* icon_play@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_play@2x.png"; sourceTree = "<group>"; };
+		520B0DB01908FAB300775E6D /* icon_find@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_find@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -617,6 +619,7 @@
 		5200ED72190858AA003C669C /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				520B0DB01908FAB300775E6D /* icon_find@2x.png */,
 				520B0DAC1908F96B00775E6D /* icon_pause@2x.png */,
 				520B0DAD1908F96B00775E6D /* icon_play@2x.png */,
 				5200ED73190858AA003C669C /* sneakjam_logo@2x.png */,
@@ -798,6 +801,7 @@
 				5200ED5B19080E6E003C669C /* OpenSans-Regular.ttf in Resources */,
 				520B0DAE1908F96B00775E6D /* icon_pause@2x.png in Resources */,
 				5200EC521907E53C003C669C /* Images.xcassets in Resources */,
+				520B0DB11908FAB300775E6D /* icon_find@2x.png in Resources */,
 				520B0DAF1908F96B00775E6D /* icon_play@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

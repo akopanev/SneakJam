@@ -99,7 +99,7 @@ const NSTimeInterval STSneakViewControllerPlayDuration		= 10;
 	UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"sneakjam_logo.png"]];
 	self.navigationItem.titleView = imageView;
 	self.navigationItem.backBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil] autorelease];
-	self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Friends" style:UIBarButtonItemStylePlain target:self action:@selector(nextAction)] autorelease];
+	self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Next" style:UIBarButtonItemStylePlain target:self action:@selector(nextAction)] autorelease];
 	
 	_sneakView = [[STSneakView alloc] initWithFrame:self.view.bounds];
 	[_sneakView.playButton addTarget:self action:@selector(playAction) forControlEvents:UIControlEventTouchUpInside];
