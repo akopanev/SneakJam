@@ -9,7 +9,7 @@
 #import "APContact.h"
 #import "APPhoneWithLabel.h"
 #import "UIImage+RoundedCorner.h"
-#import "MDImageView.h"
+#import "NSFileManager+MATools.h"
 
 NSString * const APContactSelfKey = @"self";
 
@@ -79,7 +79,7 @@ NSString * const APContactUpdatedPictureNotificationPrefix = @"APContactUpdatedP
     {
         _contactID = APContactSelfKey;
         _fieldMask = APContactFieldAll;
-        _firstName = NSLS(@"SELF_TITLE");
+        _firstName = @"";
         _lastName = nil;
         _company = nil;
         _phones = [NSArray array];
@@ -87,7 +87,7 @@ NSString * const APContactUpdatedPictureNotificationPrefix = @"APContactUpdatedP
         _emails = [NSArray array];
 
         NSString *contactID = [self contactID];
-        NSString *path = [[MDImageModel imagesDirectory] stringByAppendingPathComponent:contactID];
+		NSString *path = [[[NSFileManager defaultManager] maCachesDirectory] stringByAppendingPathComponent:contactID];
         if (![[NSFileManager defaultManager] fileExistsAtPath:path]) {
             UIImage *image = [UIImage imageNamed:@"my_avatar.png"];
             [UIImageJPEGRepresentation(image, 1.f) writeToFile:path atomically:YES];
@@ -279,11 +279,6 @@ NSString * const APContactUpdatedPictureNotificationPrefix = @"APContactUpdatedP
 }
 
 - (UIColor *)color{
-    if ([_contactID isEqualToString:APContactSelfKey]) {
-        return [UIColor intColorWithRed:67 green:202 blue:159 alpha:255];
-    } else {
-        return [UIColor spPastelColorForInt:[_contactID intValue]];
-    }
     return [UIColor blackColor];
 }
 
@@ -317,7 +312,7 @@ NSString * const APContactUpdatedPictureNotificationPrefix = @"APContactUpdatedP
             CFRelease(addressBook);
             UIImage *rounded = [quardImage roundedCornerImage:quardImage.size.width * 0.5f borderSize:0.0f];
             NSString *contactID = [selfWeak contactID];
-            NSString *path = [[MDImageModel imagesDirectory] stringByAppendingPathComponent:contactID];
+           		NSString *path = [[[NSFileManager defaultManager] maCachesDirectory] stringByAppendingPathComponent:contactID];
             NSData * data = UIImageJPEGRepresentation(rounded, 1.f);
             [data writeToFile:path atomically:YES];
             dispatch_async( dispatch_get_main_queue(), ^{

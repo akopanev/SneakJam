@@ -9,7 +9,6 @@
 #import <Foundation/Foundation.h>
 #import <AddressBook/AddressBook.h>
 #import "APTypes.h"
-#import "UIColor+SplittPay.h"
 
 extern NSString * const APContactSelfKey;
 extern NSString * const APContactUpdatedPictureNotificationPrefix;

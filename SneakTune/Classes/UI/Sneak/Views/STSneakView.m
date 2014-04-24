@@ -45,32 +45,57 @@
 		[self addSubview:_artistNameLabel];
 		
 		_loadingLabel = [[UILabel alloc] initWithFrame:CGRectZero];
-		_loadingLabel.alpha = 0.0;
+		_loadingLabel.alpha = 1.0;
 		_loadingLabel.textAlignment = NSTextAlignmentCenter;
 		_loadingLabel.text = @"Loading...";
 		_loadingLabel.font = [UIFont fontWithName:@"OpenSans-Light" size:16.0];
 		[self addSubview:_loadingLabel];
+		
+		_playButton = [[UIButton buttonWithType:UIButtonTypeCustom] retain];
+		_playButton.alpha = 0.0;
+		[_playButton setImage:[UIImage imageNamed:@"icon_play.png"] forState:UIControlStateNormal];
+		[self addSubview:_playButton];
     }
     return self;
 }
 
 #pragma mark -
 
+- (void)setPlayButtonIsPlayButton:(BOOL)playButtonIsPlayButton {
+	_playButtonIsPlayButton = playButtonIsPlayButton;
+	if (YES == _playButtonIsPlayButton) {
+		[_playButton setImage:[UIImage imageNamed:@"icon_play.png"] forState:UIControlStateNormal];
+	} else {
+		[_playButton setImage:[UIImage imageNamed:@"icon_pause.png"] forState:UIControlStateNormal];
+	}
+}
+
 - (void)setShowsLoadingLabel:(BOOL)showsLoadingLabel {
 	_showsLoadingLabel = showsLoadingLabel;
 	if (YES == showsLoadingLabel) {
+		
+		
+		[UIView animateWithDuration:0.15 animations:^{
+			_slideView.alpha = 0.0;
+			_loadingLabel.alpha = 1.0;
+		}];
+	} else {
 		[UIView animateWithDuration:0.15 animations:^{
 			_slideView.alpha = 1.0;
 			_loadingLabel.alpha = 0.0;
 		}];
-/*
-		[_slideView removeFromSuperview];
-		[self addSubview:_loadingLabel];
- */
+	}
+}
+
+- (void)setShowsPlayButton:(BOOL)showsPlayButton {
+	_showsPlayButton = showsPlayButton;
+	if (YES == _showsPlayButton) {
+		[UIView animateWithDuration:0.25 animations:^{
+			_playButton.alpha = 1.0;
+		}];
 	} else {
 		[UIView animateWithDuration:0.15 animations:^{
-			_slideView.alpha = 0.0;
-			_loadingLabel.alpha = 1.0;
+			_playButton.alpha = 0.0;
 		}];
 	}
 }
@@ -86,6 +111,7 @@
 	CGFloat coverSize = self.bounds.size.width - horizontalMargin * 2.0;
 	_coverImageView.frame = CGRectMake(horizontalMargin, verticalMargin + statusBarOffset, coverSize, coverSize);
 	_grayCoverView.frame = _coverImageView.frame;
+	_playButton.frame = _coverImageView.frame;
 	
 	_trackTitleLabel.frame = CGRectMake(horizontalMargin, CGRectGetMaxY(_coverImageView.frame) + verticalMargin + 10.0, self.bounds.size.width - horizontalMargin * 2.0, _trackTitleLabel.font.lineHeight);
 	_artistNameLabel.frame = CGRectMake(horizontalMargin, CGRectGetMaxY(_trackTitleLabel.frame), self.bounds.size.width - horizontalMargin * 2.0, _artistNameLabel.font.lineHeight);
@@ -105,6 +131,7 @@
 	[_trackTitleLabel release];
 	[_artistNameLabel release];
 	[_loadingLabel release];
+	[_playButton release];
 	[super dealloc];
 }
 

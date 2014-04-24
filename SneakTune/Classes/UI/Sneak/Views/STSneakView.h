@@ -17,5 +17,11 @@
 @property (nonatomic, readonly) STSneakSlideView		*slideView;
 
 @property (nonatomic, assign) BOOL						showsLoadingLabel;
+@property (nonatomic, assign) BOOL						showsPlayButton;
+
+// hehe, it's hackaton, I have no time...
+@property (nonatomic, assign) BOOL						playButtonIsPlayButton;
+
+@property (nonatomic, readonly) UIButton				*playButton;
 
 @end

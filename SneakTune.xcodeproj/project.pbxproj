@@ -75,6 +75,13 @@
 		5200ED861908638B003C669C /* APAddressBook.m in Sources */ = {isa = PBXBuildFile; fileRef = 5200ED801908638B003C669C /* APAddressBook.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		5200ED871908638B003C669C /* APContact.m in Sources */ = {isa = PBXBuildFile; fileRef = 5200ED821908638B003C669C /* APContact.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		5200ED881908638B003C669C /* APPhoneWithLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5200ED841908638B003C669C /* APPhoneWithLabel.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		5200EDA11908F3C8003C669C /* NSDate-Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 5200ED8F1908F3C8003C669C /* NSDate-Utilities.m */; };
+		5200EDA21908F3C8003C669C /* UIImage+Alpha.m in Sources */ = {isa = PBXBuildFile; fileRef = 5200ED931908F3C8003C669C /* UIImage+Alpha.m */; };
+		5200EDA31908F3C8003C669C /* UIImage+ProportionalFill.m in Sources */ = {isa = PBXBuildFile; fileRef = 5200ED951908F3C8003C669C /* UIImage+ProportionalFill.m */; };
+		5200EDA41908F3C8003C669C /* UIImage+RoundedCorner.m in Sources */ = {isa = PBXBuildFile; fileRef = 5200ED971908F3C8003C669C /* UIImage+RoundedCorner.m */; };
+		5200EDA51908F3C8003C669C /* UIImage+Tint.m in Sources */ = {isa = PBXBuildFile; fileRef = 5200ED991908F3C8003C669C /* UIImage+Tint.m */; };
+		520B0DAE1908F96B00775E6D /* icon_pause@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 520B0DAC1908F96B00775E6D /* icon_pause@2x.png */; };
+		520B0DAF1908F96B00775E6D /* icon_play@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 520B0DAD1908F96B00775E6D /* icon_play@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -218,6 +225,20 @@
 		5200ED831908638B003C669C /* APPhoneWithLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APPhoneWithLabel.h; sourceTree = "<group>"; };
 		5200ED841908638B003C669C /* APPhoneWithLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APPhoneWithLabel.m; sourceTree = "<group>"; };
 		5200ED851908638B003C669C /* APTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APTypes.h; sourceTree = "<group>"; };
+		5200ED8D1908F3C8003C669C /* MDThirdFoundationCategories.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDThirdFoundationCategories.h; sourceTree = "<group>"; };
+		5200ED8E1908F3C8003C669C /* NSDate-Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate-Utilities.h"; sourceTree = "<group>"; };
+		5200ED8F1908F3C8003C669C /* NSDate-Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate-Utilities.m"; sourceTree = "<group>"; };
+		5200ED911908F3C8003C669C /* MDThirdUICategories.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDThirdUICategories.h; sourceTree = "<group>"; };
+		5200ED921908F3C8003C669C /* UIImage+Alpha.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Alpha.h"; sourceTree = "<group>"; };
+		5200ED931908F3C8003C669C /* UIImage+Alpha.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Alpha.m"; sourceTree = "<group>"; };
+		5200ED941908F3C8003C669C /* UIImage+ProportionalFill.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+ProportionalFill.h"; sourceTree = "<group>"; };
+		5200ED951908F3C8003C669C /* UIImage+ProportionalFill.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ProportionalFill.m"; sourceTree = "<group>"; };
+		5200ED961908F3C8003C669C /* UIImage+RoundedCorner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+RoundedCorner.h"; sourceTree = "<group>"; };
+		5200ED971908F3C8003C669C /* UIImage+RoundedCorner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+RoundedCorner.m"; sourceTree = "<group>"; };
+		5200ED981908F3C8003C669C /* UIImage+Tint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Tint.h"; sourceTree = "<group>"; };
+		5200ED991908F3C8003C669C /* UIImage+Tint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Tint.m"; sourceTree = "<group>"; };
+		520B0DAC1908F96B00775E6D /* icon_pause@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_pause@2x.png"; sourceTree = "<group>"; };
+		520B0DAD1908F96B00775E6D /* icon_play@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_play@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -334,6 +355,7 @@
 		5200EC6F1907E5E8003C669C /* libs */ = {
 			isa = PBXGroup;
 			children = (
+				5200ED891908F3C8003C669C /* 3rd */,
 				5200ED7E1908638B003C669C /* APAddressBook */,
 				5200ED2C1908009F003C669C /* UI */,
 				5200ECDC1907F694003C669C /* AFNetworking */,
@@ -595,6 +617,8 @@
 		5200ED72190858AA003C669C /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				520B0DAC1908F96B00775E6D /* icon_pause@2x.png */,
+				520B0DAD1908F96B00775E6D /* icon_play@2x.png */,
 				5200ED73190858AA003C669C /* sneakjam_logo@2x.png */,
 			);
 			path = Images;
@@ -639,6 +663,57 @@
 				5200ED851908638B003C669C /* APTypes.h */,
 			);
 			path = APAddressBook;
+			sourceTree = "<group>";
+		};
+		5200ED891908F3C8003C669C /* 3rd */ = {
+			isa = PBXGroup;
+			children = (
+				5200ED8A1908F3C8003C669C /* Main */,
+			);
+			path = 3rd;
+			sourceTree = "<group>";
+		};
+		5200ED8A1908F3C8003C669C /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				5200ED8B1908F3C8003C669C /* Categories */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		5200ED8B1908F3C8003C669C /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				5200ED8C1908F3C8003C669C /* Foundation */,
+				5200ED901908F3C8003C669C /* UI */,
+			);
+			path = Categories;
+			sourceTree = "<group>";
+		};
+		5200ED8C1908F3C8003C669C /* Foundation */ = {
+			isa = PBXGroup;
+			children = (
+				5200ED8D1908F3C8003C669C /* MDThirdFoundationCategories.h */,
+				5200ED8E1908F3C8003C669C /* NSDate-Utilities.h */,
+				5200ED8F1908F3C8003C669C /* NSDate-Utilities.m */,
+			);
+			path = Foundation;
+			sourceTree = "<group>";
+		};
+		5200ED901908F3C8003C669C /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				5200ED911908F3C8003C669C /* MDThirdUICategories.h */,
+				5200ED921908F3C8003C669C /* UIImage+Alpha.h */,
+				5200ED931908F3C8003C669C /* UIImage+Alpha.m */,
+				5200ED941908F3C8003C669C /* UIImage+ProportionalFill.h */,
+				5200ED951908F3C8003C669C /* UIImage+ProportionalFill.m */,
+				5200ED961908F3C8003C669C /* UIImage+RoundedCorner.h */,
+				5200ED971908F3C8003C669C /* UIImage+RoundedCorner.m */,
+				5200ED981908F3C8003C669C /* UIImage+Tint.h */,
+				5200ED991908F3C8003C669C /* UIImage+Tint.m */,
+			);
+			path = UI;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -721,7 +796,9 @@
 				5200ED74190858AA003C669C /* sneakjam_logo@2x.png in Resources */,
 				5200EC4A1907E53C003C669C /* InfoPlist.strings in Resources */,
 				5200ED5B19080E6E003C669C /* OpenSans-Regular.ttf in Resources */,
+				520B0DAE1908F96B00775E6D /* icon_pause@2x.png in Resources */,
 				5200EC521907E53C003C669C /* Images.xcassets in Resources */,
+				520B0DAF1908F96B00775E6D /* icon_play@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -749,6 +826,7 @@
 				5200ED171907F694003C669C /* AFNetworkReachabilityManager.m in Sources */,
 				5200ECD11907EF1B003C669C /* STTrackModel.m in Sources */,
 				5200ED5519080875003C669C /* UIWebView+AFNetworking.m in Sources */,
+				5200EDA11908F3C8003C669C /* NSDate-Utilities.m in Sources */,
 				5200ED291907F694003C669C /* UIView+MALibrary.m in Sources */,
 				5200ED3A1908020E003C669C /* STTrackContentView.m in Sources */,
 				5200ED5419080875003C669C /* UIRefreshControl+AFNetworking.m in Sources */,
@@ -757,6 +835,7 @@
 				5200ED181907F694003C669C /* AFSecurityPolicy.m in Sources */,
 				5200ED5219080875003C669C /* UIImageView+AFNetworking.m in Sources */,
 				5200ED5119080875003C669C /* UIButton+AFNetworking.m in Sources */,
+				5200EDA21908F3C8003C669C /* UIImage+Alpha.m in Sources */,
 				5200ED4F19080875003C669C /* UIActivityIndicatorView+AFNetworking.m in Sources */,
 				5200ED331908009F003C669C /* TPKeyboardAvoidingScrollView.m in Sources */,
 				5200ED871908638B003C669C /* APContact.m in Sources */,
@@ -771,6 +850,8 @@
 				5200ED6619081FB4003C669C /* STSneakView.m in Sources */,
 				5200EC4C1907E53C003C669C /* main.m in Sources */,
 				5200EC931907EBE2003C669C /* STAPIEngine.m in Sources */,
+				5200EDA31908F3C8003C669C /* UIImage+ProportionalFill.m in Sources */,
+				5200EDA51908F3C8003C669C /* UIImage+Tint.m in Sources */,
 				5200ED201907F694003C669C /* NSNotificationCenter+MAKeys.m in Sources */,
 				5200ED231907F694003C669C /* UIColor+MATools.m in Sources */,
 				5200ED5019080875003C669C /* UIAlertView+AFNetworking.m in Sources */,
@@ -780,6 +861,7 @@
 				5200ED2B1907F694003C669C /* UIView+MAUserInfo.m in Sources */,
 				5200ED6C1908205B003C669C /* STSneakIndicatorView.m in Sources */,
 				5200ED37190801FD003C669C /* STTrackViewCell.m in Sources */,
+				5200EDA41908F3C8003C669C /* UIImage+RoundedCorner.m in Sources */,
 				5200ED1F1907F694003C669C /* NSMutableArray+MATools.m in Sources */,
 				5200ED5E190810A9003C669C /* STAlbumModel.m in Sources */,
 				5200ED1A1907F694003C669C /* AFURLRequestSerialization.m in Sources */,
