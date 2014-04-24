@@ -11,6 +11,8 @@
 #import "NSError+MAErrorDescription.h"
 #import "NSMutableArray+MaTools.h"
 
+#import "APContact.h"
+
 // consts
 NSString *const STSpotifyAPIURL				= @"https://api.spotify.com/v1/";
 NSString *const STBackendAPIURL				= @"http://tune.milytia.org/share.php";
@@ -104,7 +106,46 @@ NSString *const STBackendAPIURL				= @"http://tune.milytia.org/share.php";
 	[params setValue:[trackInfo objectForKey:@"duration"] forKey:@"duration"];
 	[params setValue:[[trackInfo objectForKey:@"album"] coverBigImageURL] forKey:@"cover_image"];
 	
-	NSLog(@"params == %@", params);
+	// https://play.spotify.com/track/0S2qXOyCf7MJlpxvsmZJVa
+	NSString *spotifyURL = [NSString stringWithFormat:@"https://play.spotify.com/track/%@", [[trackInfo objectForKey:@"track"] trackId]];
+	[params setValue:spotifyURL forKey:@"page_url"];
+	NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:STBackendAPIURL]];
+	[request setHTTPMethod:@"POST"];
+	NSMutableString *string = [NSMutableString string];
+	NSArray *allKeys = [params allKeys];
+	for (int i = 0; i < allKeys.count; i++) {
+		NSString *key = [allKeys objectAtIndex:i];
+		[string appendFormat:@"%@=%@%@", key, [params objectForKey:key], i < allKeys.count - 1 ? @"&" : @""];
+	}
+	
+	NSMutableArray *emails = [NSMutableArray array];
+	for (APContact *contact in friends) {
+		[emails addObject:[contact.emails firstObject]];
+	}
+	[string appendFormat:@"&emails=%@", [emails componentsJoinedByString:@","]];
+	NSLog(@"%s string == %@", __PRETTY_FUNCTION__, string);
+	
+	[request setHTTPBody:[string dataUsingEncoding:NSUTF8StringEncoding]];
+	
+	AFHTTPRequestOperation *op = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+	op.responseSerializer = [AFJSONResponseSerializer serializer];
+	[op setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+		/*
+		 status = success;
+		 url = "http://tune.milytia.org/8";
+		 */
+		NSString *status = [responseObject objectForKey:@"status"];
+		if ([@"success" isEqualToString:status]) {
+			NSString *url = [responseObject objectForKey:@"url"];
+			[[NSNotificationCenter defaultCenter] maSendNotificationNamed:notificationName object:self result:url error:nil userInfo:trackInfo];
+		} else {
+			[[NSNotificationCenter defaultCenter] maSendNotificationNamed:notificationName object:self result:nil error:[NSError errorWithDomain:@"STErrorDomain" code:1 userInfo:nil] userInfo:trackInfo];
+		}		
+	} failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+		[[NSNotificationCenter defaultCenter] maSendNotificationNamed:notificationName object:self result:nil error:error userInfo:trackInfo];
+	}];
+	[[NSOperationQueue mainQueue] addOperation:op];
+	
 }
 
 @end

@@ -60,17 +60,26 @@ const NSTimeInterval STSneakViewControllerPlayDuration		= 10;
 		[[NSFileManager defaultManager] removeItemAtPath:[self mp3FilePath] error:nil];
 		return [self mp3FileURL];
 	} completionHandler:^(NSURLResponse *response, NSURL *filePath, NSError *error) {
-		if (nil == error) {
-			// [self playMP3WithCurrentOffset];
-			self.audioPlayer = [[[AVAudioPlayer alloc] initWithContentsOfURL:[self mp3FileURL] error:nil] autorelease];
-			self.initialOffset = [NSNumber numberWithDouble:0.0];
-			[self.audioPlayer prepareToPlay];
-			_sneakView.showsLoadingLabel = NO;
-			_sneakView.showsPlayButton = YES;
+		// dirty!
+		if (self.navigationController.visibleViewController != self) {
+			
 		} else {
-			UIAlertView *alertView = [[[UIAlertView alloc] initWithTitle:nil message:@"Failed to download preview. Would you like to try again?" delegate:self cancelButtonTitle:@"No" otherButtonTitles:@"Yes", nil] autorelease];
-			alertView.tag = STSneakViewControllerErrorAlertViewTag;
-			[alertView show];
+			
+			if (nil == error) {
+				
+				// [self playMP3WithCurrentOffset];
+				self.audioPlayer = [[[AVAudioPlayer alloc] initWithContentsOfURL:[self mp3FileURL] error:nil] autorelease];
+				self.initialOffset = [NSNumber numberWithDouble:0.0];
+				[self.audioPlayer prepareToPlay];
+				_sneakView.showsLoadingLabel = NO;
+				_sneakView.showsPlayButton = YES;
+			} else {
+				
+				
+				UIAlertView *alertView = [[[UIAlertView alloc] initWithTitle:nil message:@"Ooops! We couldn't play the tune. Give it another try?" delegate:self cancelButtonTitle:@"No" otherButtonTitles:@"Yes", nil] autorelease];
+				alertView.tag = STSneakViewControllerErrorAlertViewTag;
+				[alertView show];
+			}
 		}
 		
 	}];
@@ -85,8 +94,6 @@ const NSTimeInterval STSneakViewControllerPlayDuration		= 10;
 		self.albumModel = albumModel;
 		
 		NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
-		configuration.URLCache = nil;
-		configuration.requestCachePolicy = NSURLRequestReloadIgnoringLocalCacheData;
 		_sessionManager = [[AFURLSessionManager alloc] initWithSessionConfiguration:configuration];
 	}
 	return self;
@@ -178,7 +185,7 @@ const NSTimeInterval STSneakViewControllerPlayDuration		= 10;
 
 - (void)nextAction {
 	NSTimeInterval offset = _sneakView.slideView.currentOffset * self.audioPlayer.duration;
-	STContactsViewController *contactsViewController = [[[STContactsViewController alloc] initWithTrackModel:self.trackModel albumModel:self.albumModel offset:offset duration:self.audioPlayer.duration] autorelease];
+	STContactsViewController *contactsViewController = [[[STContactsViewController alloc] initWithTrackModel:self.trackModel albumModel:self.albumModel offset:offset duration:STSneakViewControllerPlayDuration] autorelease];
 	[self.navigationController pushViewController:contactsViewController animated:YES];
 }
 
@@ -207,6 +214,7 @@ const NSTimeInterval STSneakViewControllerPlayDuration		= 10;
 #pragma mark -
 
 - (void)dealloc {
+	[[NSNotificationCenter defaultCenter] removeObserver:self];
 	[_trackModel release];
 	[_albumModel release];
 	[_sneakView release];

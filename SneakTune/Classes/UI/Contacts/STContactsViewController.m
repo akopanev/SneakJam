@@ -11,7 +11,7 @@
 #import "STContactViewCell.h"
 #import "APAddressBook.h"
 
-#import "STAPIEngine.h"
+#import "STShareViewController.h"
 
 @interface STContactsViewController () <UITableViewDataSource, UITableViewDelegate> {
 	STContactsView		*_contactsView;
@@ -33,8 +33,8 @@
 		_trackInfo = [[NSMutableDictionary alloc] init];
 		[_trackInfo setValue:trackModel forKey:@"track"];
 		[_trackInfo setValue:albumModel forKey:@"album"];
-		[_trackInfo setValue:[NSNumber numberWithDouble:offset * 1000] forKey:@"offset"];
-		[_trackInfo setValue:[NSNumber numberWithDouble:duration * 1000] forKey:@"duration"];
+		[_trackInfo setValue:[NSNumber numberWithInt:offset * 1000] forKey:@"offset"];
+		[_trackInfo setValue:[NSNumber numberWithInt:duration * 1000] forKey:@"duration"];
 	}
 	return self;
 }
@@ -109,7 +109,9 @@
 - (void)shareAction {
 	NSArray *selectedUsers = [self selectedUsers];
 	if (selectedUsers.count) {
-		[[STAPIEngine defaultEngine] apiShareTrackInfo:_trackInfo friends:selectedUsers notificationName:nil];
+		
+		STShareViewController *shareViewController = [[[STShareViewController alloc] initWithTrackInfo:_trackInfo selectedUsers:selectedUsers] autorelease];
+		[self.navigationController pushViewController:shareViewController animated:YES];
 	} else {
 		[[[[UIAlertView alloc] initWithTitle:nil message:@"Select friends for sharing" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease] show];
 	}
@@ -144,6 +146,7 @@
 #pragma mark -
 
 - (void)dealloc {
+		[[NSNotificationCenter defaultCenter] removeObserver:self];
 	[_addressBook release];
 	[_contactsView release];
 	[_trackInfo release];

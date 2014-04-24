@@ -87,6 +87,8 @@
 		520B0DB71908FEB000775E6D /* STContactContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 520B0DB61908FEB000775E6D /* STContactContentView.m */; };
 		520B0DBA190907AB00775E6D /* icon_check@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 520B0DB8190907AB00775E6D /* icon_check@2x.png */; };
 		520B0DBB190907AB00775E6D /* icon_unchecked@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 520B0DB9190907AB00775E6D /* icon_unchecked@2x.png */; };
+		5261CA381909149900E9FBD0 /* STShareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5261CA371909149900E9FBD0 /* STShareViewController.m */; };
+		5261CA3B1909151C00E9FBD0 /* STShareView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5261CA3A1909151C00E9FBD0 /* STShareView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -251,6 +253,10 @@
 		520B0DB61908FEB000775E6D /* STContactContentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STContactContentView.m; sourceTree = "<group>"; };
 		520B0DB8190907AB00775E6D /* icon_check@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_check@2x.png"; sourceTree = "<group>"; };
 		520B0DB9190907AB00775E6D /* icon_unchecked@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_unchecked@2x.png"; sourceTree = "<group>"; };
+		5261CA361909149900E9FBD0 /* STShareViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STShareViewController.h; sourceTree = "<group>"; };
+		5261CA371909149900E9FBD0 /* STShareViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STShareViewController.m; sourceTree = "<group>"; };
+		5261CA391909151C00E9FBD0 /* STShareView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STShareView.h; sourceTree = "<group>"; };
+		5261CA3A1909151C00E9FBD0 /* STShareView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STShareView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -405,6 +411,7 @@
 		5200EC901907EBC6003C669C /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				5261CA341909148B00E9FBD0 /* Share */,
 				5200ED75190861F1003C669C /* Contacts */,
 				5200ED5F19081EA1003C669C /* Sneak */,
 				5200ECD21907F110003C669C /* Search */,
@@ -735,6 +742,25 @@
 			path = UI;
 			sourceTree = "<group>";
 		};
+		5261CA341909148B00E9FBD0 /* Share */ = {
+			isa = PBXGroup;
+			children = (
+				5261CA351909148B00E9FBD0 /* Views */,
+				5261CA361909149900E9FBD0 /* STShareViewController.h */,
+				5261CA371909149900E9FBD0 /* STShareViewController.m */,
+			);
+			path = Share;
+			sourceTree = "<group>";
+		};
+		5261CA351909148B00E9FBD0 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				5261CA391909151C00E9FBD0 /* STShareView.h */,
+				5261CA3A1909151C00E9FBD0 /* STShareView.m */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -872,6 +898,7 @@
 				5200ED151907F694003C669C /* AFHTTPRequestOperationManager.m in Sources */,
 				5200ED271907F694003C669C /* UIImage+MARoundedCorner.m in Sources */,
 				5200ED6619081FB4003C669C /* STSneakView.m in Sources */,
+				5261CA3B1909151C00E9FBD0 /* STShareView.m in Sources */,
 				5200EC4C1907E53C003C669C /* main.m in Sources */,
 				5200EC931907EBE2003C669C /* STAPIEngine.m in Sources */,
 				5200EDA31908F3C8003C669C /* UIImage+ProportionalFill.m in Sources */,
@@ -891,6 +918,7 @@
 				5200ED1A1907F694003C669C /* AFURLRequestSerialization.m in Sources */,
 				5200ED141907F694003C669C /* AFHTTPRequestOperation.m in Sources */,
 				5200ED2A1907F694003C669C /* UIView+MARoundedCorner.m in Sources */,
+				5261CA381909149900E9FBD0 /* STShareViewController.m in Sources */,
 				5200ED691908203A003C669C /* STSneakSlideView.m in Sources */,
 				5200ED221907F694003C669C /* UIAlertView+MABlocks.m in Sources */,
 				5200ED241907F694003C669C /* UIDevice+MATools.m in Sources */,
