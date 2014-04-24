@@ -33,7 +33,7 @@ CGFloat STSneakSlideIndicatorViewHeight		= 15.0;
 		[self addSubview:_grayView];
 		
 		_indicatorView = [[STSneakIndicatorView alloc] initWithFrame:CGRectZero];
-		[_indicatorView addTarget:self action:@selector(draggingAction:event:) forControlEvents:UIControlEventTouchDragEnter | UIControlEventTouchDragInside | UIControlEventTouchDragOutside];
+		[_indicatorView addTarget:self action:@selector(draggingAction:event:) forControlEvents:UIControlEventTouchDown | UIControlEventTouchDragEnter | UIControlEventTouchDragInside | UIControlEventTouchDragOutside];
 		[_indicatorView addTarget:self action:@selector(draggingFinishedAction:) forControlEvents:UIControlEventTouchUpInside | UIControlEventTouchUpOutside];
 		[self addSubview:_indicatorView];
 		[_indicatorView setNeedsDisplay];

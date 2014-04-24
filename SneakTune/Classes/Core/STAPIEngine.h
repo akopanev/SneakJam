@@ -15,7 +15,7 @@
 // singleton
 + (instancetype)defaultEngine;
 
-// APIs
+// Spotify APIs
 // search
 // result is an array of tracks (NSArray)
 // userInfo is trackTitle (NSString)
@@ -23,5 +23,8 @@
 
 // album
 - (void)apiAlbumById:(NSString *)albumId notificationName:(NSString *)notificationName;
+
+// Sweety backend
+- (void)apiShareTrackInfo:(NSDictionary *)trackInfo friends:(NSArray *)friends notificationName:(NSString *)notificationName;
 
 @end

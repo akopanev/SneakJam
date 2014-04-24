@@ -13,6 +13,7 @@
 
 // consts
 NSString *const STSpotifyAPIURL				= @"https://api.spotify.com/v1/";
+NSString *const STBackendAPIURL				= @"http://tune.milytia.org/share.php";
 
 @implementation STAPIEngine
 
@@ -40,7 +41,7 @@ NSString *const STSpotifyAPIURL				= @"https://api.spotify.com/v1/";
 	return [NSURL URLWithString:urlString];
 }
 
-#pragma mark - APIs
+#pragma mark - Spotify
 
 #pragma mark * search
 
@@ -80,6 +81,30 @@ NSString *const STSpotifyAPIURL				= @"https://api.spotify.com/v1/";
 		[[NSNotificationCenter defaultCenter] maSendNotificationNamed:notificationName object:self result:nil error:error userInfo:albumId];
 	}];
 	[[NSOperationQueue mainQueue] addOperation:op];
+}
+
+#pragma mark - Backend
+
+- (void)apiShareTrackInfo:(NSDictionary *)trackInfo friends:(NSArray *)friends notificationName:(NSString *)notificationName {
+	/*
+	 url - превью (required)
+	 offset - начало в ms (required)
+	 duration - длина в ms (required)
+	 page_url - страница на spotify
+	 title - название песни
+	 artist - исполнитель
+	 cover_image - url картинки
+	 */
+	
+	NSMutableDictionary *params = [NSMutableDictionary dictionary];
+	[params setValue:[[trackInfo objectForKey:@"track"] previewURL] forKey:@"url"];
+	[params setValue:[[trackInfo objectForKey:@"track"] artistName] forKey:@"artist"];
+	[params setValue:[[trackInfo objectForKey:@"track"] name] forKey:@"title"];
+	[params setValue:[trackInfo objectForKey:@"offset"] forKey:@"offset"];
+	[params setValue:[trackInfo objectForKey:@"duration"] forKey:@"duration"];
+	[params setValue:[[trackInfo objectForKey:@"album"] coverBigImageURL] forKey:@"cover_image"];
+	
+	NSLog(@"params == %@", params);
 }
 
 @end

@@ -177,7 +177,8 @@ const NSTimeInterval STSneakViewControllerPlayDuration		= 10;
 }
 
 - (void)nextAction {
-	STContactsViewController *contactsViewController = [[[STContactsViewController alloc] init] autorelease];
+	NSTimeInterval offset = _sneakView.slideView.currentOffset * self.audioPlayer.duration;
+	STContactsViewController *contactsViewController = [[[STContactsViewController alloc] initWithTrackModel:self.trackModel albumModel:self.albumModel offset:offset duration:self.audioPlayer.duration] autorelease];
 	[self.navigationController pushViewController:contactsViewController animated:YES];
 }
 

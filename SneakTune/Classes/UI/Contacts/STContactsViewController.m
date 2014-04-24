@@ -11,9 +11,13 @@
 #import "STContactViewCell.h"
 #import "APAddressBook.h"
 
+#import "STAPIEngine.h"
+
 @interface STContactsViewController () <UITableViewDataSource, UITableViewDelegate> {
 	STContactsView		*_contactsView;
 	APAddressBook		*_addressBook;
+	
+	NSMutableDictionary	*_trackInfo;
 }
 
 @property (nonatomic, retain) NSArray		*contactsList;
@@ -21,6 +25,19 @@
 @end
 
 @implementation STContactsViewController
+
+#pragma mark -
+
+- (id)initWithTrackModel:(STTrackModel *)trackModel albumModel:(STAlbumModel *)albumModel offset:(NSTimeInterval)offset duration:(NSTimeInterval)duration {
+	if (self = [super init]) {
+		_trackInfo = [[NSMutableDictionary alloc] init];
+		[_trackInfo setValue:trackModel forKey:@"track"];
+		[_trackInfo setValue:albumModel forKey:@"album"];
+		[_trackInfo setValue:[NSNumber numberWithDouble:offset * 1000] forKey:@"offset"];
+		[_trackInfo setValue:[NSNumber numberWithDouble:duration * 1000] forKey:@"duration"];
+	}
+	return self;
+}
 
 #pragma mark -
 
@@ -58,6 +75,16 @@
     });
 }
 
+- (NSArray *)selectedUsers {
+	NSMutableArray *selectedUsers = [NSMutableArray array];
+	for (APContact *contact in self.contactsList) {
+		if (contact.isSelected) {
+			[selectedUsers addObject:contact];
+		}
+	}
+	return selectedUsers;
+}
+
 #pragma mark -
 
 - (void)viewDidLoad {
@@ -65,6 +92,7 @@
 	UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"sneakjam_logo.png"]];
 	self.navigationItem.titleView = imageView;
 	self.navigationItem.backBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil] autorelease];
+	self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Share" style:UIBarButtonItemStylePlain target:self action:@selector(shareAction)] autorelease];
 	
 	_contactsView = [[STContactsView alloc] initWithFrame:self.view.bounds];
 	_contactsView.tableView.delegate = self;
@@ -74,6 +102,17 @@
 	[self.view addSubview:_contactsView];
 	
 	[self parseContacts];
+}
+
+#pragma mark - actions
+
+- (void)shareAction {
+	NSArray *selectedUsers = [self selectedUsers];
+	if (selectedUsers.count) {
+		[[STAPIEngine defaultEngine] apiShareTrackInfo:_trackInfo friends:selectedUsers notificationName:nil];
+	} else {
+		[[[[UIAlertView alloc] initWithTitle:nil message:@"Select friends for sharing" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease] show];
+	}
 }
 
 #pragma mark -
@@ -107,6 +146,7 @@
 - (void)dealloc {
 	[_addressBook release];
 	[_contactsView release];
+	[_trackInfo release];
 	[super dealloc];
 }
 

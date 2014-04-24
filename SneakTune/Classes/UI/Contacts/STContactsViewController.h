@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "STTrackModel.h"
+#import "STAlbumModel.h"
 
 @interface STContactsViewController : UIViewController
+
+- (id)initWithTrackModel:(STTrackModel *)trackModel albumModel:(STAlbumModel *)albumModel offset:(NSTimeInterval)offset duration:(NSTimeInterval)duration;
 
 @end

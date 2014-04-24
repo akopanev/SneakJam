@@ -75,7 +75,7 @@ const CGFloat STContactContentViewHeight			= 50.0;
 	_contactImageView.frame = CGRectMake(offset, 0.0, STContactContentViewHeight, STContactContentViewHeight);
 	_grayCoverView.frame = _contactImageView.frame;
 	
-	_checkmarkImageView.frame = CGRectMake( self.bounds.size.width - _checkmarkImageView.bounds.size.width - offset, floor(self.bounds.size.height * 0.5f - _checkmarkImageView.bounds.size.height * 0.5f), _checkmarkImageView.bounds.size.width, _checkmarkImageView.bounds.size.height);
+	_checkmarkImageView.frame = CGRectMake( self.bounds.size.width - _checkmarkImageView.bounds.size.width - offset * 2.0, floor(self.bounds.size.height * 0.5f - _checkmarkImageView.bounds.size.height * 0.5f), _checkmarkImageView.bounds.size.width, _checkmarkImageView.bounds.size.height);
 	
 	CGFloat labelsX = CGRectGetMaxX(_contactImageView.frame) + offset * 2.0;
 	CGFloat labelsWidth = CGRectGetMinX(_checkmarkImageView.frame) - CGRectGetMaxX(_contactImageView.frame) - offset * 4.0;
