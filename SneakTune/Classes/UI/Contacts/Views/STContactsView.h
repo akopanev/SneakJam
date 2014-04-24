@@ -11,5 +11,6 @@
 @interface STContactsView : UIView
 
 @property (nonatomic, readonly) UITableView		*tableView;
+@property (nonatomic, readonly) UITextField		*searchField;
 
 @end

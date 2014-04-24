@@ -13,13 +13,14 @@
 
 #import "STShareViewController.h"
 
-@interface STContactsViewController () <UITableViewDataSource, UITableViewDelegate> {
+@interface STContactsViewController () <UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate> {
 	STContactsView		*_contactsView;
 	APAddressBook		*_addressBook;
-	
+	NSOperationQueue	*_filteringContactsQueue;
 	NSMutableDictionary	*_trackInfo;
 }
 
+@property (nonatomic, retain) NSArray		*filteredContactsList;
 @property (nonatomic, retain) NSArray		*contactsList;
 
 @end
@@ -68,11 +69,29 @@
 					// sort them out
 					[contactsWithEmail sortUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"stringValueForSorting" ascending:YES]]];
 					self.contactsList = contactsWithEmail;
-					[_contactsView.tableView reloadData];
+					[self filterContacts:_contactsView.searchField.text];
 				}
             }
         }];
     });
+}
+
+- (void)filterContacts:(NSString *)keyword {
+	if (keyword.length > 0) {
+        [_filteringContactsQueue cancelAllOperations];
+        [_filteringContactsQueue addOperationWithBlock:^{
+            NSPredicate *predicate = [NSPredicate predicateWithFormat:@"((firstName != $DATE) AND (firstName != nil) AND (firstName CONTAINS[c] %@)) OR ((lastName != $DATE) AND (lastName != nil) AND (lastName CONTAINS[c] %@)) OR ((company != $DATE) AND (company != nil) AND (company CONTAINS[c] %@)) OR (ANY emails CONTAINS[c] %@)", keyword, keyword, keyword, keyword];
+            predicate = [predicate predicateWithSubstitutionVariables:@{@"DATE": [NSNull null] }];
+            NSArray *localFilteredArray = [self.contactsList filteredArrayUsingPredicate:predicate];
+            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+				self.filteredContactsList = [NSMutableArray arrayWithArray:localFilteredArray];
+				[_contactsView.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationNone];
+            }];
+        }];
+	} else {
+		self.filteredContactsList = self.contactsList;
+		[_contactsView.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationNone];
+	}
 }
 
 - (NSArray *)selectedUsers {
@@ -89,12 +108,16 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+	
+	_filteringContactsQueue = [[NSOperationQueue alloc] init];
+	
 	UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"sneakjam_logo.png"]];
 	self.navigationItem.titleView = imageView;
 	self.navigationItem.backBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil] autorelease];
 	self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Share" style:UIBarButtonItemStylePlain target:self action:@selector(shareAction)] autorelease];
 	
 	_contactsView = [[STContactsView alloc] initWithFrame:self.view.bounds];
+	_contactsView.searchField.delegate = self;
 	_contactsView.tableView.delegate = self;
 	_contactsView.tableView.dataSource = self;
 	[_contactsView.tableView registerClass:[STContactViewCell class] forCellReuseIdentifier:@"STContactViewCell"];
@@ -124,7 +147,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-	return self.contactsList.count;
+	return self.filteredContactsList.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -133,23 +156,41 @@
 		cell = [[[STContactViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"STContactViewCell"] autorelease];
 	}
 	
-	cell.contactContentView.contact = [self.contactsList objectAtIndex:indexPath.row];
+	cell.contactContentView.contact = [self.filteredContactsList objectAtIndex:indexPath.row];
 	return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-	APContact *person = [self.contactsList objectAtIndex:indexPath.row];
+	APContact *person = [self.filteredContactsList objectAtIndex:indexPath.row];
 	person.isSelected = !person.isSelected;
 	[tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationNone];
 }
 
 #pragma mark -
 
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+	[textField resignFirstResponder];
+	return YES;
+}
+
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
+	[self filterContacts:[textField.text stringByReplacingCharactersInRange:range withString:string]];
+    return YES;
+}
+
+- (BOOL)textFieldShouldClear:(UITextField *)textField {
+	[self filterContacts:@""];
+	return YES;
+}
+
+#pragma mark -
+
 - (void)dealloc {
-		[[NSNotificationCenter defaultCenter] removeObserver:self];
+	[[NSNotificationCenter defaultCenter] removeObserver:self];
 	[_addressBook release];
 	[_contactsView release];
 	[_trackInfo release];
+	[_filteringContactsQueue release];
 	[super dealloc];
 }
 
