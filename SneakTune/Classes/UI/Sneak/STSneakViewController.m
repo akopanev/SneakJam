@@ -14,6 +14,7 @@
 #import "AFURLSessionManager.h"
 #import "NSFileManager+MATools.h"
 #import <AVFoundation/AVFoundation.h>
+#import "STContactsViewController.h"
 
 // consts
 NSString *const STSneakViewControllerMP3FileName			= @"preview.mp3";
@@ -46,6 +47,7 @@ NSString *const STSneakViewControllerMP3FileName			= @"preview.mp3";
 #pragma mark - requests
 
 - (void)requestMP3:(NSString *)mp3URL {
+	_sneakView.showsLoadingLabel = YES;
 	NSURL *URL = [NSURL URLWithString:mp3URL];
 	NSURLRequest *request = [NSURLRequest requestWithURL:URL];
 	
@@ -86,7 +88,8 @@ NSString *const STSneakViewControllerMP3FileName			= @"preview.mp3";
 	
 	UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"sneakjam_logo.png"]];
 	self.navigationItem.titleView = imageView;
-	self.navigationItem.backBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil] autorelease];	
+	self.navigationItem.backBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil] autorelease];
+	self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Friends" style:UIBarButtonItemStylePlain target:self action:@selector(nextAction)] autorelease];
 	
 	_sneakView = [[STSneakView alloc] initWithFrame:self.view.bounds];
 	[self.view addSubview:_sneakView];
@@ -118,6 +121,11 @@ NSString *const STSneakViewControllerMP3FileName			= @"preview.mp3";
 	if (self.audioPlayer) {
 		[self playMP3WithCurrentOffset];
 	}
+}
+
+- (void)nextAction {
+	STContactsViewController *contactsViewController = [[STContactsViewController alloc] init];
+	[self.navigationController pushViewController:contactsViewController animated:YES];
 }
 
 #pragma mark - audio

@@ -11,6 +11,7 @@
 
 @interface STSneakView () {
 	UIView		*_grayCoverView;
+	UILabel		*_loadingLabel;
 }
 
 @end
@@ -21,6 +22,7 @@
     self = [super initWithFrame:frame];
     if (self) {
 		self.backgroundColor = [UIColor whiteColor];
+		self.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
 		
 		_grayCoverView = [[UIView alloc] initWithFrame:CGRectZero];
 		_grayCoverView.backgroundColor = [UIColor colorWithWhite:227.0 / 255.0 alpha:1.0];
@@ -41,11 +43,37 @@
 		_artistNameLabel.font = [UIFont fontWithName:@"OpenSans-Light" size:16.0];
 		_artistNameLabel.textAlignment = NSTextAlignmentCenter;
 		[self addSubview:_artistNameLabel];
+		
+		_loadingLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+		_loadingLabel.alpha = 0.0;
+		_loadingLabel.textAlignment = NSTextAlignmentCenter;
+		_loadingLabel.text = @"Loading...";
+		_loadingLabel.font = [UIFont fontWithName:@"OpenSans-Light" size:16.0];
+		[self addSubview:_loadingLabel];
     }
     return self;
 }
 
 #pragma mark -
+
+- (void)setShowsLoadingLabel:(BOOL)showsLoadingLabel {
+	_showsLoadingLabel = showsLoadingLabel;
+	if (YES == showsLoadingLabel) {
+		[UIView animateWithDuration:0.15 animations:^{
+			_slideView.alpha = 1.0;
+			_loadingLabel.alpha = 0.0;
+		}];
+/*
+		[_slideView removeFromSuperview];
+		[self addSubview:_loadingLabel];
+ */
+	} else {
+		[UIView animateWithDuration:0.15 animations:^{
+			_slideView.alpha = 0.0;
+			_loadingLabel.alpha = 1.0;
+		}];
+	}
+}
 
 - (void)layoutSubviews {
 	[super layoutSubviews];
@@ -62,9 +90,10 @@
 	_trackTitleLabel.frame = CGRectMake(horizontalMargin, CGRectGetMaxY(_coverImageView.frame) + verticalMargin + 10.0, self.bounds.size.width - horizontalMargin * 2.0, _trackTitleLabel.font.lineHeight);
 	_artistNameLabel.frame = CGRectMake(horizontalMargin, CGRectGetMaxY(_trackTitleLabel.frame), self.bounds.size.width - horizontalMargin * 2.0, _artistNameLabel.font.lineHeight);
 	
-	CGFloat remainingHeight = self.bounds.size.height - CGRectGetMaxY(_artistNameLabel.frame);
+	CGFloat remainingHeight = self.bounds.size.height - CGRectGetMaxY(_artistNameLabel.frame) - verticalMargin;
 	const CGFloat slideWidth = 250.0;
 	_slideView.frame = CGRectMake(floorf(self.bounds.size.width * 0.5f - slideWidth * 0.5f), floorf(CGRectGetMaxY(_artistNameLabel.frame) + remainingHeight * 0.5f - STSneakSlideViewHeight * 0.5), slideWidth, STSneakSlideViewHeight);
+	_loadingLabel.frame = CGRectMake( horizontalMargin, CGRectGetMaxY(_artistNameLabel.frame), self.bounds.size.width - horizontalMargin * 2.0, remainingHeight);
 }
 
 #pragma mark -
@@ -75,6 +104,7 @@
 	[_slideView release];
 	[_trackTitleLabel release];
 	[_artistNameLabel release];
+	[_loadingLabel release];
 	[super dealloc];
 }
 

@@ -12,6 +12,7 @@
 
 #import "STAPIEngine.h"
 #import "STSneakViewController.h"
+#import "UIView+MALibrary.h"
 
 // const
 NSString *const STSearchViewControllerSearchAPINotification			= @"STSearchViewControllerSearchAPINotification";
@@ -103,6 +104,11 @@ NSString *const STSearchViewControllerAlbumIdNotification			= @"STSearchViewCont
 	self.searchView.searchField.text = @"Song";
 	[self requestSearchTrack:self.searchView.searchField.text];
 #endif
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+	[super viewWillDisappear:animated];
+	[self.view maFindAndResignFirstResponder];
 }
 
 #pragma mark - ui

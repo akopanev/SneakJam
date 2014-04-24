@@ -70,6 +70,11 @@
 		5200ED6E19082736003C669C /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5200ED6D19082736003C669C /* QuartzCore.framework */; };
 		5200ED7019083DEC003C669C /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5200ED6F19083DEC003C669C /* AVFoundation.framework */; };
 		5200ED74190858AA003C669C /* sneakjam_logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5200ED73190858AA003C669C /* sneakjam_logo@2x.png */; };
+		5200ED7A1908623D003C669C /* STContactsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5200ED791908623D003C669C /* STContactsViewController.m */; };
+		5200ED7D190862AE003C669C /* STContactsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5200ED7C190862AE003C669C /* STContactsView.m */; };
+		5200ED861908638B003C669C /* APAddressBook.m in Sources */ = {isa = PBXBuildFile; fileRef = 5200ED801908638B003C669C /* APAddressBook.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		5200ED871908638B003C669C /* APContact.m in Sources */ = {isa = PBXBuildFile; fileRef = 5200ED821908638B003C669C /* APContact.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		5200ED881908638B003C669C /* APPhoneWithLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5200ED841908638B003C669C /* APPhoneWithLabel.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -202,6 +207,17 @@
 		5200ED6D19082736003C669C /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		5200ED6F19083DEC003C669C /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		5200ED73190858AA003C669C /* sneakjam_logo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sneakjam_logo@2x.png"; sourceTree = "<group>"; };
+		5200ED781908623D003C669C /* STContactsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STContactsViewController.h; sourceTree = "<group>"; };
+		5200ED791908623D003C669C /* STContactsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STContactsViewController.m; sourceTree = "<group>"; };
+		5200ED7B190862AE003C669C /* STContactsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STContactsView.h; sourceTree = "<group>"; };
+		5200ED7C190862AE003C669C /* STContactsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STContactsView.m; sourceTree = "<group>"; };
+		5200ED7F1908638B003C669C /* APAddressBook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APAddressBook.h; sourceTree = "<group>"; };
+		5200ED801908638B003C669C /* APAddressBook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APAddressBook.m; sourceTree = "<group>"; };
+		5200ED811908638B003C669C /* APContact.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APContact.h; sourceTree = "<group>"; };
+		5200ED821908638B003C669C /* APContact.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APContact.m; sourceTree = "<group>"; };
+		5200ED831908638B003C669C /* APPhoneWithLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APPhoneWithLabel.h; sourceTree = "<group>"; };
+		5200ED841908638B003C669C /* APPhoneWithLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APPhoneWithLabel.m; sourceTree = "<group>"; };
+		5200ED851908638B003C669C /* APTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APTypes.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -318,6 +334,7 @@
 		5200EC6F1907E5E8003C669C /* libs */ = {
 			isa = PBXGroup;
 			children = (
+				5200ED7E1908638B003C669C /* APAddressBook */,
 				5200ED2C1908009F003C669C /* UI */,
 				5200ECDC1907F694003C669C /* AFNetworking */,
 				5200ECF11907F694003C669C /* Categories */,
@@ -354,6 +371,7 @@
 		5200EC901907EBC6003C669C /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				5200ED75190861F1003C669C /* Contacts */,
 				5200ED5F19081EA1003C669C /* Sneak */,
 				5200ECD21907F110003C669C /* Search */,
 			);
@@ -582,6 +600,47 @@
 			path = Images;
 			sourceTree = "<group>";
 		};
+		5200ED75190861F1003C669C /* Contacts */ = {
+			isa = PBXGroup;
+			children = (
+				5200ED7619086201003C669C /* Views */,
+				5200ED781908623D003C669C /* STContactsViewController.h */,
+				5200ED791908623D003C669C /* STContactsViewController.m */,
+			);
+			path = Contacts;
+			sourceTree = "<group>";
+		};
+		5200ED7619086201003C669C /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				5200ED7719086201003C669C /* Cells */,
+				5200ED7B190862AE003C669C /* STContactsView.h */,
+				5200ED7C190862AE003C669C /* STContactsView.m */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		5200ED7719086201003C669C /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		5200ED7E1908638B003C669C /* APAddressBook */ = {
+			isa = PBXGroup;
+			children = (
+				5200ED7F1908638B003C669C /* APAddressBook.h */,
+				5200ED801908638B003C669C /* APAddressBook.m */,
+				5200ED811908638B003C669C /* APContact.h */,
+				5200ED821908638B003C669C /* APContact.m */,
+				5200ED831908638B003C669C /* APPhoneWithLabel.h */,
+				5200ED841908638B003C669C /* APPhoneWithLabel.m */,
+				5200ED851908638B003C669C /* APTypes.h */,
+			);
+			path = APAddressBook;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -685,6 +744,8 @@
 				5200ED191907F694003C669C /* AFURLConnectionOperation.m in Sources */,
 				5200ED251907F694003C669C /* UIFont+MATools.m in Sources */,
 				5200ED161907F694003C669C /* AFHTTPSessionManager.m in Sources */,
+				5200ED861908638B003C669C /* APAddressBook.m in Sources */,
+				5200ED7D190862AE003C669C /* STContactsView.m in Sources */,
 				5200ED171907F694003C669C /* AFNetworkReachabilityManager.m in Sources */,
 				5200ECD11907EF1B003C669C /* STTrackModel.m in Sources */,
 				5200ED5519080875003C669C /* UIWebView+AFNetworking.m in Sources */,
@@ -698,7 +759,9 @@
 				5200ED5119080875003C669C /* UIButton+AFNetworking.m in Sources */,
 				5200ED4F19080875003C669C /* UIActivityIndicatorView+AFNetworking.m in Sources */,
 				5200ED331908009F003C669C /* TPKeyboardAvoidingScrollView.m in Sources */,
+				5200ED871908638B003C669C /* APContact.m in Sources */,
 				5200ED1E1907F694003C669C /* NSFileManager+MATools.m in Sources */,
+				5200ED7A1908623D003C669C /* STContactsViewController.m in Sources */,
 				5200ECCE1907EF0E003C669C /* STBaseModel.m in Sources */,
 				5200ED6319081EB0003C669C /* STSneakViewController.m in Sources */,
 				5200ECD71907F34B003C669C /* STSearchViewController.m in Sources */,
@@ -729,6 +792,7 @@
 				5200ED341908009F003C669C /* TPKeyboardAvoidingTableView.m in Sources */,
 				5200EC501907E53C003C669C /* STAppDelegate.m in Sources */,
 				5200ED211907F694003C669C /* NSObject+MAKeyValue.m in Sources */,
+				5200ED881908638B003C669C /* APPhoneWithLabel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

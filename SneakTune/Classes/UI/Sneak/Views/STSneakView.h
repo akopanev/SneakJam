@@ -16,4 +16,6 @@
 @property (nonatomic, readonly) UILabel					*artistNameLabel;
 @property (nonatomic, readonly) STSneakSlideView		*slideView;
 
+@property (nonatomic, assign) BOOL						showsLoadingLabel;
+
 @end
