@@ -34,6 +34,9 @@ NSString * const APContactUpdatedPictureNotificationPrefix = @"APContactUpdatedP
     self = [super init];
     if (self)
     {
+		
+		self.recordRef = recordRef;
+		
          _contactID = [self stringRecordIDfromRecord:recordRef];
         _fieldMask = fieldMask;
         if (fieldMask & APContactFieldFirstName)

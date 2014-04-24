@@ -15,8 +15,19 @@
     if (self) {
 		self.backgroundColor = [UIColor whiteColor];
 		self.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+		
+		_tableView = [[UITableView alloc] initWithFrame:CGRectZero];
+		_tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+		[self addSubview:_tableView];
     }
     return self;
+}
+
+#pragma mark -
+
+- (void)layoutSubviews {
+	[super layoutSubviews];
+	_tableView.frame = self.bounds;
 }
 
 #pragma mark -

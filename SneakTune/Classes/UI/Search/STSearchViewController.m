@@ -161,11 +161,6 @@ NSString *const STSearchViewControllerAlbumIdNotification			= @"STSearchViewCont
 	STTrackModel *trackModel = [self.tracksList objectAtIndex:indexPath.row];
 	STAlbumModel *albumModel = [_albumsDictionary objectForKey:trackModel.albumId];
 	
-	NSLog(@"id == %@", trackModel.albumId);
-	NSLog(@"albums == %@", _albumsDictionary);
-	
-	NSLog(@"album Model == %@", albumModel);
-	
 	STSneakViewController *sneakViewController = [[[STSneakViewController alloc] initWithTrackModel:trackModel albumModel:albumModel] autorelease];
 	[self.navigationController pushViewController:sneakViewController animated:YES];
 }

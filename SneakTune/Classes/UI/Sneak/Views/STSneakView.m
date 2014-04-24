@@ -8,6 +8,7 @@
 
 #import "STSneakView.h"
 #import "STSneakIndicatorView.h"
+#import <QuartzCore/QuartzCore.h>
 
 @interface STSneakView () {
 	UIView		*_grayCoverView;
@@ -55,6 +56,8 @@
 		_playButton.alpha = 0.0;
 		[_playButton setImage:[UIImage imageNamed:@"icon_play.png"] forState:UIControlStateNormal];
 		[self addSubview:_playButton];
+		
+		_coverImageView.layer.masksToBounds = YES;
     }
     return self;
 }
@@ -112,6 +115,8 @@
 	_coverImageView.frame = CGRectMake(horizontalMargin, verticalMargin + statusBarOffset, coverSize, coverSize);
 	_grayCoverView.frame = _coverImageView.frame;
 	_playButton.frame = _coverImageView.frame;
+	
+	_grayCoverView.layer.cornerRadius = _coverImageView.layer.cornerRadius = coverSize * 0.5;
 	
 	_trackTitleLabel.frame = CGRectMake(horizontalMargin, CGRectGetMaxY(_coverImageView.frame) + verticalMargin + 10.0, self.bounds.size.width - horizontalMargin * 2.0, _trackTitleLabel.font.lineHeight);
 	_artistNameLabel.frame = CGRectMake(horizontalMargin, CGRectGetMaxY(_trackTitleLabel.frame), self.bounds.size.width - horizontalMargin * 2.0, _artistNameLabel.font.lineHeight);

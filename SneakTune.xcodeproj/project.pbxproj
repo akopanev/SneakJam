@@ -83,6 +83,10 @@
 		520B0DAE1908F96B00775E6D /* icon_pause@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 520B0DAC1908F96B00775E6D /* icon_pause@2x.png */; };
 		520B0DAF1908F96B00775E6D /* icon_play@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 520B0DAD1908F96B00775E6D /* icon_play@2x.png */; };
 		520B0DB11908FAB300775E6D /* icon_find@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 520B0DB01908FAB300775E6D /* icon_find@2x.png */; };
+		520B0DB41908FE9F00775E6D /* STContactViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 520B0DB31908FE9F00775E6D /* STContactViewCell.m */; };
+		520B0DB71908FEB000775E6D /* STContactContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 520B0DB61908FEB000775E6D /* STContactContentView.m */; };
+		520B0DBA190907AB00775E6D /* icon_check@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 520B0DB8190907AB00775E6D /* icon_check@2x.png */; };
+		520B0DBB190907AB00775E6D /* icon_unchecked@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 520B0DB9190907AB00775E6D /* icon_unchecked@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -241,6 +245,12 @@
 		520B0DAC1908F96B00775E6D /* icon_pause@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_pause@2x.png"; sourceTree = "<group>"; };
 		520B0DAD1908F96B00775E6D /* icon_play@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_play@2x.png"; sourceTree = "<group>"; };
 		520B0DB01908FAB300775E6D /* icon_find@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_find@2x.png"; sourceTree = "<group>"; };
+		520B0DB21908FE9F00775E6D /* STContactViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STContactViewCell.h; sourceTree = "<group>"; };
+		520B0DB31908FE9F00775E6D /* STContactViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STContactViewCell.m; sourceTree = "<group>"; };
+		520B0DB51908FEB000775E6D /* STContactContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STContactContentView.h; sourceTree = "<group>"; };
+		520B0DB61908FEB000775E6D /* STContactContentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STContactContentView.m; sourceTree = "<group>"; };
+		520B0DB8190907AB00775E6D /* icon_check@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_check@2x.png"; sourceTree = "<group>"; };
+		520B0DB9190907AB00775E6D /* icon_unchecked@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_unchecked@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -619,6 +629,8 @@
 		5200ED72190858AA003C669C /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				520B0DB8190907AB00775E6D /* icon_check@2x.png */,
+				520B0DB9190907AB00775E6D /* icon_unchecked@2x.png */,
 				520B0DB01908FAB300775E6D /* icon_find@2x.png */,
 				520B0DAC1908F96B00775E6D /* icon_pause@2x.png */,
 				520B0DAD1908F96B00775E6D /* icon_play@2x.png */,
@@ -650,6 +662,10 @@
 		5200ED7719086201003C669C /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				520B0DB21908FE9F00775E6D /* STContactViewCell.h */,
+				520B0DB31908FE9F00775E6D /* STContactViewCell.m */,
+				520B0DB51908FEB000775E6D /* STContactContentView.h */,
+				520B0DB61908FEB000775E6D /* STContactContentView.m */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -800,8 +816,10 @@
 				5200EC4A1907E53C003C669C /* InfoPlist.strings in Resources */,
 				5200ED5B19080E6E003C669C /* OpenSans-Regular.ttf in Resources */,
 				520B0DAE1908F96B00775E6D /* icon_pause@2x.png in Resources */,
+				520B0DBA190907AB00775E6D /* icon_check@2x.png in Resources */,
 				5200EC521907E53C003C669C /* Images.xcassets in Resources */,
 				520B0DB11908FAB300775E6D /* icon_find@2x.png in Resources */,
+				520B0DBB190907AB00775E6D /* icon_unchecked@2x.png in Resources */,
 				520B0DAF1908F96B00775E6D /* icon_play@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -831,6 +849,7 @@
 				5200ECD11907EF1B003C669C /* STTrackModel.m in Sources */,
 				5200ED5519080875003C669C /* UIWebView+AFNetworking.m in Sources */,
 				5200EDA11908F3C8003C669C /* NSDate-Utilities.m in Sources */,
+				520B0DB71908FEB000775E6D /* STContactContentView.m in Sources */,
 				5200ED291907F694003C669C /* UIView+MALibrary.m in Sources */,
 				5200ED3A1908020E003C669C /* STTrackContentView.m in Sources */,
 				5200ED5419080875003C669C /* UIRefreshControl+AFNetworking.m in Sources */,
@@ -848,6 +867,7 @@
 				5200ECCE1907EF0E003C669C /* STBaseModel.m in Sources */,
 				5200ED6319081EB0003C669C /* STSneakViewController.m in Sources */,
 				5200ECD71907F34B003C669C /* STSearchViewController.m in Sources */,
+				520B0DB41908FE9F00775E6D /* STContactViewCell.m in Sources */,
 				5200ED5319080875003C669C /* UIProgressView+AFNetworking.m in Sources */,
 				5200ED151907F694003C669C /* AFHTTPRequestOperationManager.m in Sources */,
 				5200ED271907F694003C669C /* UIImage+MARoundedCorner.m in Sources */,

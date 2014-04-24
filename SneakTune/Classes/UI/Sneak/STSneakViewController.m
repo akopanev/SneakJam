@@ -128,7 +128,7 @@ const NSTimeInterval STSneakViewControllerPlayDuration		= 10;
 
 - (void)viewWillDisappear:(BOOL)animated {
 	[super viewWillDisappear:animated];
-	[self killTimer];
+	[self pauseAction];
 }
 
 #pragma mark - timer stuff
@@ -186,7 +186,6 @@ const NSTimeInterval STSneakViewControllerPlayDuration		= 10;
 - (void)playMP3WithCurrentOffset {
 	_sneakView.playButtonIsPlayButton = NO;
 	NSTimeInterval offset = _sneakView.slideView.currentOffset * self.audioPlayer.duration;
-	NSLog(@"%s %.2f", __PRETTY_FUNCTION__, _sneakView.slideView.currentOffset);
 	self.audioPlayer.currentTime = offset;
 	[self.audioPlayer play];
 	[self launchTenSecondsTimer];

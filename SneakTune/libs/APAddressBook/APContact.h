@@ -37,6 +37,9 @@ extern NSString * const APContactUpdatedPictureNotificationPrefix;
 @property (nonatomic, readonly) UIColor *color;
 @property (nonatomic, readonly) BOOL isSelfUser;
 
+@property (nonatomic, assign) ABRecordRef	recordRef;
+@property (nonatomic, assign) BOOL			isSelected;
+
 - (id)initSelfUser;
 - (id)initWithRecordRef:(ABRecordRef)recordRef fieldMask:(APContactField)fieldMask;
 
